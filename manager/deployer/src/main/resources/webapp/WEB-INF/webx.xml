@@ -28,7 +28,7 @@
                  http://www.alibaba.com/schema/services/request-contexts/session/stores http://localhost:8080/schema/services-request-contexts-session-stores.xsd
                  http://www.springframework.org/schema/beans http://localhost:8080/schema/www.springframework.org/schema/beans/spring-beans.xsd
              ">
-             
+
 	<beans:description>父容器所在的配置</beans:description>
 
 	<!-- 支持${xxx}替换。 -->
@@ -108,7 +108,7 @@
             <search-packages type="$1" packages="com.alibaba.otter.manager.web.home.module.*" />
         </ml-factories:class-modules>
     </services:module-loader>
-    
+
 	<!-- 权限配置 -->
 	<beans:bean id="urlAnalyze"
 		class="com.alibaba.otter.manager.web.webx.valve.auth.RegExpURLAnalyze">
@@ -136,14 +136,8 @@
 						/.*conflict_stat_list\.htm
 						/.*behaviorHistoryCurve\.htm
 						/.*behavior_history_curve\.htm
-						/.*List\.htm
-						/.*Info\.htm
-						/.*\_list\.htm
-						/.*\_info\.htm
-						/.*\_detail\.htm
 						/.*\_path\.htm
 						/.*search.*\.htm
-						/.*analysis.*\.htm
 						/.*record.*\.htm
 						/.*Record.*\.htm
 						/.*alarmRuleList.*\.htm
@@ -166,7 +160,12 @@
 				class="com.alibaba.otter.manager.web.webx.valve.auth.AuthorizeProtected">
 				<beans:property name="urlProtected">
 					<beans:value>
-
+						/.*List\.htm
+						/.*Info\.htm
+						/.*\_list\.htm
+						/.*\_info\.htm
+						/.*\_detail\.htm
+						/.*analysis.*\.htm
 					</beans:value>
 				</beans:property>
 				<beans:property name="actionProtected">
@@ -208,12 +207,12 @@
 		</beans:property>
 	</beans:bean>
 	<beans:bean id="apiAuthService" class="com.alibaba.otter.manager.web.common.api.DefaultApiAuthService" />
-	
-	<beans:bean class="org.springframework.beans.factory.config.CustomEditorConfigurer" depends-on="arbitrateConfigImpl">  
-	   <beans:property name="customEditors">  
-		    <beans:map>  
-		       <beans:entry key="com.alibaba.otter.manager.web.webx.valve.auth.url.URLProtected" value="com.alibaba.otter.manager.web.webx.valve.auth.url.URLProtectedEditor" /> 
-		       <beans:entry key="com.alibaba.otter.manager.web.webx.valve.auth.action.ActionProtected" value="com.alibaba.otter.manager.web.webx.valve.auth.action.ActionProtectedEditor" /> 
+
+	<beans:bean class="org.springframework.beans.factory.config.CustomEditorConfigurer" depends-on="arbitrateConfigImpl">
+	   <beans:property name="customEditors">
+		    <beans:map>
+		       <beans:entry key="com.alibaba.otter.manager.web.webx.valve.auth.url.URLProtected" value="com.alibaba.otter.manager.web.webx.valve.auth.url.URLProtectedEditor" />
+		       <beans:entry key="com.alibaba.otter.manager.web.webx.valve.auth.action.ActionProtected" value="com.alibaba.otter.manager.web.webx.valve.auth.action.ActionProtectedEditor" />
 		    </beans:map>
 	   </beans:property>
 	</beans:bean>
